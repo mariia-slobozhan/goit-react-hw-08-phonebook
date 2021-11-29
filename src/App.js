@@ -1,31 +1,59 @@
 import "./App.css";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
-// import { fetchContacts } from "redux/contacts/contacts-operations";
+import { lazy, Suspense } from "react";
+import { fetchCurrentUser } from "redux/auth/auth-operations";
+import authSelectors from "redux/auth/auth-selectors";
+import PrivateRoute from "Components/Routes/PrivateRoute";
+import PublicRoute from "Components/Routes/PublicRoute";
 import AppBar from "./Components/AppBar/AppBar";
-import ContactsView from "views/ContactsView";
-import HomeView from "views/HomeView";
-import LoginView from "views/LoginView";
-import RegisterView from "views/RegisterView";
+const HomeView = lazy(() =>
+  import("views/HomeView.js")
+); /* webpackChunkName: "home-view" */
+const LoginView = lazy(() =>
+  import("views/LoginView.js")
+); /* webpackChunkName: "login-view" */
+const RegisterView = lazy(() =>
+  import("views/RegisterView.js")
+); /* webpackChunkName: "register-view" */
+const ContactsView = lazy(() =>
+  import("views/ContactsView.js")
+); /* webpackChunkName: "contacts-view" */
 
 export default function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const isFetchingCurrent = useSelector(authSelectors.getIsFetchingCurrent);
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <>
       <AppBar />
       <main>
-        <Routes>
-          <Route path="/" element={<HomeView />} />
-          <Route path="/login" element={<LoginView />} />
-          <Route path="/register" element={<RegisterView />} />
-          <Route path="/contacts" element={<ContactsView />} />
-        </Routes>
+        {isFetchingCurrent ? (
+          <h1>Loader</h1>
+        ) : (
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<PublicRoute component={HomeView} />} />
+              <Route
+                path="/login"
+                element={<PublicRoute restricted component={LoginView} />}
+              />
+              <Route
+                path="/register"
+                element={<PublicRoute restricted component={RegisterView} />}
+              />
+              <Route
+                path="/contacts"
+                element={<PrivateRoute component={ContactsView} />}
+              />
+            </Routes>
+          </Suspense>
+        )}
       </main>
     </>
   );
