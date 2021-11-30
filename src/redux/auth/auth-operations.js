@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 const token = {
@@ -17,9 +18,17 @@ export const register = createAsyncThunk(
     try {
       const { data } = await axios.post("/users/signup", credentials);
       token.set(data.token);
+      toast.success(`${credentials.name}, welcome to your Phone book page!`);
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      if (credentials.password.length < 7) {
+        toast.error(
+          `Your password is shorter than minimum allowed length 7 symbols`
+        );
+      } else {
+        toast.error("Incorrect Email or Password");
+      }
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -32,7 +41,8 @@ export const logIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      toast.error(`User with '${credentials.email}' email does not exist`);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -44,7 +54,7 @@ export const logOut = createAsyncThunk(
       await axios.post("/users/logout");
       token.unset();
     } catch (error) {
-      rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -62,7 +72,7 @@ export const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get("/users/current");
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

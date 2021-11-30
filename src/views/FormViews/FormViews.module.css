@@ -1,0 +1,26 @@
+.title {
+  font-size: 26px;
+  color: rgb(21, 89, 141);
+  margin: 0;
+  padding: 15px 0;
+}
+
+.container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  height: 100vh;
+
+  background-image: url("images/register_bg.jpg");
+  background-size: cover;
+}
+
+.form {
+  margin: 30px auto;
+  padding: 35px;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid rgba(213, 84, 84, 0.3);
+  background-color: rgba(201, 172, 213, 0.4);
+  border-radius: 5%;
+}

@@ -1,4 +1,25 @@
+.contaiter {
+  margin: 0px auto;
+  padding: 30px;
+  max-width: 900px;
+  background-color: rgba(94, 135, 209, 0.3);
+  border-radius: 5px;
+}
+.input_contaiter {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 30px;
+}
+
 .label {
+  color: rgb(11, 54, 87);
   margin-left: 15px;
   margin-right: 7px;
   font-weight: 500;
@@ -6,11 +27,14 @@
 }
 
 .input {
-  margin-left: 10px;
+  min-width: 250px;
+}
+
+::placeholder {
+  color: rgba(11, 54, 87, 0.3);
 }
 
 .button {
-  background-color: rgb(185, 185, 194);
+  background-color: rgb(129, 129, 192);
   font-weight: 700;
-  border-radius: 4px;
 }

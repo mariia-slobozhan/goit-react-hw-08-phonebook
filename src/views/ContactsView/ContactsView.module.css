@@ -1,0 +1,8 @@
+.container {
+  padding-bottom: 30px;
+  padding-top: 30px;
+  min-height: 100vh;
+  height: 100%;
+  background-image: url("images/contacts_bg.jpg");
+  background-size: cover;
+}

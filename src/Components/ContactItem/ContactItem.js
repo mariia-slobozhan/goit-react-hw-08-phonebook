@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "redux/contacts/contacts-operations";
-// import { useDeleteContactMutation } from "redux/contacts/contactsSlice";
+import { Button } from "antd";
 import PropTypes from "prop-types";
 import s from "./ContactItem.module.css";
 
@@ -13,14 +13,15 @@ export default function ContactItem({ contact }) {
     <li className={s.item} id={contact.id}>
       <span className={s.name}>{contact.name}</span>
       <span className={s.tel}>{contact.number}</span>
-      <button
+      <Button
         className={s.button}
         onClick={() => onDeleteContact(contact.id)}
-        type="button"
+        type="primary"
+        htmlType="button"
       >
         Delete
         {/* {isDeleting ? "Deleting..." : "Delete"} */}
-      </button>
+      </Button>
     </li>
   );
 }

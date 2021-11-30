@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Form, Input, Button } from "antd";
 import { register } from "redux/auth/auth-operations";
+import s from "./FormViews.module.css";
 
 export default function RegisterView() {
   const [name, setName] = useState("");
@@ -35,40 +37,66 @@ export default function RegisterView() {
   };
 
   return (
-    <div>
-      <h1>Registration</h1>
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Name
-          <input
+    <div className={s.container}>
+      <form className={s.form} onSubmit={handleSubmit} autoComplete="off">
+        <h1 className={s.title}>Registration</h1>
+        <Form.Item
+          label="Name"
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Name!",
+            },
+          ]}
+        >
+          <Input
             type="text"
             name="userName"
             value={name}
             required
             onChange={handleChange}
           />
-        </label>
-        <label>
-          E-mail
-          <input
+        </Form.Item>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Email!",
+            },
+          ]}
+        >
+          <Input
             type="email"
             name="email"
             value={email}
             required
             onChange={handleChange}
           />
-        </label>
-        <label>
-          Password
-          <input
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input.Password
             type="text"
             name="password"
             value={password}
             required
             onChange={handleChange}
           />
-        </label>
-        <button type="submit">Register</button>
+        </Form.Item>
+        <Button type="primary" htmlType="submit">
+          Sign up
+        </Button>
       </form>
     </div>
   );
