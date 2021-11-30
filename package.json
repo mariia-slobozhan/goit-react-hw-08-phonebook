@@ -11,6 +11,7 @@
     "antd": "^4.17.2",
     "axios": "^0.24.0",
     "lint-staged": "^11.1.4",
+    "netlify-cli": "^8.0.5",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -31,7 +32,7 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [
