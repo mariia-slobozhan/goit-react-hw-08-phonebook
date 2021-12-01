@@ -20,7 +20,6 @@ export default function ContactItem({ contact }) {
         htmlType="button"
       >
         Delete
-        {/* {isDeleting ? "Deleting..." : "Delete"} */}
       </Button>
     </li>
   );

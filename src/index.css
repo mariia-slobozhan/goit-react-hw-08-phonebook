@@ -1,18 +1,14 @@
 body {
-  /* margin: 30px; */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-height: 100vh;
-  /* overflow-y: hidden; */
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
+} */
 
 h1 {
   font-size: 26px;
@@ -20,6 +16,12 @@ h1 {
 
 h2 {
   font-size: 20px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .ant-form {
@@ -52,4 +54,19 @@ h2 {
 .ant-btn-primary:focus,
 .ant-btn-primary:hover {
   background-color: rgb(176, 114, 202);
+}
+
+::-webkit-scrollbar {
+  /* 1 - скроллбар */
+  width: 4px;
+  height: 4px;
+
+  background-color: rgba(255, 255, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  /* 5 - ползунок */
+  border-radius: 3px;
+  height: 43px;
+  background-color: var(--placeholder-text-color);
 }
